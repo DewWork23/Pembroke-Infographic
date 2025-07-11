@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembroke, NC Community Snapshot</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .infographic {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #e74c3c, #f39c12, #27ae60, #3498db);
+        }
+        
+        .title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid;
+        }
+        
+        .geography {
+            border-left-color: #3498db;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f8f9fa 100%);
+        }
+        
+        .population {
+            border-left-color: #e74c3c;
+            background: linear-gradient(135deg, #ffebee 0%, #f8f9fa 100%);
+        }
+        
+        .culture {
+            border-left-color: #f39c12;
+            background: linear-gradient(135deg, #fff3e0 0%, #f8f9fa 100%);
+        }
+        
+        .economy {
+            border-left-color: #27ae60;
+            background: linear-gradient(135deg, #e8f5e8 0%, #f8f9fa 100%);
+        }
+        
+        .strengths {
+            border-left-color: #9b59b6;
+            background: linear-gradient(135deg, #f3e5f5 0%, #f8f9fa 100%);
+        }
+        
+        .concern {
+            border-left-color: #e67e22;
+            background: linear-gradient(135deg, #fdf2e9 0%, #f8f9fa 100%);
+        }
+        
+        .rural {
+            border-left-color: #34495e;
+            background: linear-gradient(135deg, #ecf0f1 0%, #f8f9fa 100%);
+        }
+        
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .geography .icon { background: #3498db; }
+        .population .icon { background: #e74c3c; }
+        .culture .icon { background: #f39c12; }
+        .economy .icon { background: #27ae60; }
+        .strengths .icon { background: #9b59b6; }
+        .concern .icon { background: #e67e22; }
+        .rural .icon { background: #34495e; }
+        
+        .section-content {
+            line-height: 1.6;
+            color: #2c3e50;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .stat-item {
+            background: rgba(255,255,255,0.7);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        
+        .strength-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .strength-item {
+            background: rgba(255,255,255,0.7);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .strength-title {
+            font-weight: 600;
+            color: #8e44ad;
+            margin-bottom: 8px;
+        }
+        
+        .citation {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #ecf0f1;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .highlight-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .infographic {
+                margin: 10px;
+                border-radius: 10px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .title {
+                font-size: 1.8rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .strength-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="header">
+            <h1 class="title">Pembroke, North Carolina</h1>
+            <p class="subtitle">Community Snapshot • Cultural Heart of the Lumbee Nation</p>
+        </div>
+        
+        <div class="content">
+            <div class="section geography">
+                <h2 class="section-title">
+                    <span class="icon">🗺️</span>
+                    Geography
+                </h2>
+                <div class="section-content">
+                    <p><strong>Location:</strong> Southeastern North Carolina, Robeson County</p>
+                    <p><strong>Size:</strong> 2.3 square miles (6.0 km²) - all land</p>
+                    <p><strong>Proximity:</strong> 90 miles inland from Atlantic Coast, along the Lumber River</p>
+                    <p><strong>Access:</strong> 7 miles east of Highway 74/I-95 intersection, 2 hours from Charlotte/Raleigh</p>
+                    <div class="citation">Source: U.S. Census Bureau; Town of Pembroke official website</div>
+                </div>
+            </div>
+            
+            <div class="section population">
+                <h2 class="section-title">
+                    <span class="icon">👥</span>
+                    Population Demographics
+                </h2>
+                <div class="section-content">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">2,832</span>
+                            <div class="stat-label">Total Population (2023)</div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">68.8%</span>
+                            <div class="stat-label">American Indian</div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">14.1%</span>
+                            <div class="stat-label">Black/African American</div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">10.9%</span>
+                            <div class="stat-label">White</div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">24</span>
+                            <div class="stat-label">Median Age</div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">$22,940</span>
+                            <div class="stat-label">Median Household Income</div>
+                        </div>
+                    </div>
+                    <div class="citation">Source: U.S. Census Bureau 2023 Population Estimates; American Community Survey</div>
+                </div>
+            </div>
+            
+            <div class="section culture">
+                <h2 class="section-title">
+                    <span class="icon">🪶</span>
+                    Culture & Heritage
+                </h2>
+                <div class="section-content">
+                    <p><strong>Tribal Seat:</strong> Headquarters of the Lumbee Tribe of North Carolina - largest state-recognized tribe east of the Mississippi River with 55,000+ members</p>
+                    <p><strong>Cultural Identity:</strong> "People of the Dark Water" - multi-tribal origins including Algonquian, Iroquoian, and Siouan language families</p>
+                    <p><strong>Annual Celebrations:</strong> Lumbee Homecoming draws 20,000+ visitors each July for parade, powwow, and cultural events</p>
+                    <p><strong>Historic Recognition:</strong> State-recognized since 1885; known for 1958 "Battle of Hayes Pond" confronting KKK</p>
+                    <div class="citation">Source: Lumbee Tribe of North Carolina; UNC Pembroke Special Collections</div>
+                </div>
+            </div>
+            
+            <div class="section economy">
+                <h2 class="section-title">
+                    <span class="icon">💼</span>
+                    Economy
+                </h2>
+                <div class="section-content">
+                    <p><strong>Primary Industries:</strong> Education (UNC Pembroke), healthcare, retail trade, manufacturing</p>
+                    <p><strong>Major Employers:</strong> University of North Carolina at Pembroke (7,667 students), tribal services, local healthcare</p>
+                    <p><strong>Employment:</strong> 75.5% white-collar workers, 24.5% blue-collar workers</p>
+                    <p><strong>Entrepreneurship:</strong> Known for Lumbee entrepreneurial spirit and focus on education</p>
+                    <div class="citation">Source: U.S. Census Bureau American Community Survey; DataUSA.io</div>
+                </div>
+            </div>
+            
+            <div class="section strengths">
+                <h2 class="section-title">
+                    <span class="icon">⭐</span>
+                    Community Strengths
+                </h2>
+                <div class="section-content">
+                    <div class="strength-list">
+                        <div class="strength-item">
+                            <div class="strength-title">Educational Excellence</div>
+                            <p>Home to UNC Pembroke - one of the safest and most diverse campuses in the nation with 18:1 student-faculty ratio</p>
+                        </div>
+                        <div class="strength-item">
+                            <div class="strength-title">Cultural Resilience</div>
+                            <p>Strong tribal governance and cultural preservation with comprehensive social services through Lumbee Tribe</p>
+                        </div>
+                        <div class="strength-item">
+                            <div class="strength-title">Strategic Location</div>
+                            <p>Midpoint between Boston and Miami on I-95 corridor with access to major metros and coastal areas</p>
+                        </div>
+                    </div>
+                    <div class="citation">Source: UNC Pembroke; Lumbee Tribe of North Carolina; U.S. News & World Report</div>
+                </div>
+            </div>
+            
+            <div class="highlight">
+                <div class="highlight-title">🚨 Pressing Health & Social Concern</div>
+                <p><strong>Health Disparities & Poverty:</strong> 43.7% of residents live in poverty (vs. 24% state average). Robeson County ranks last (100th) among NC counties in health outcomes with 30% of residents reporting poor/fair health - twice the state rate and triple the national average.</p>
+            </div>
+            
+            <div class="section concern">
+                <h2 class="section-title">
+                    <span class="icon">⚕️</span>
+                    Key Health Challenges
+                </h2>
+                <div class="section-content">
+                    <p><strong>Healthcare Access:</strong> 25% uninsured (vs. 18% state average); 22.5% lack reliable transportation to specialist appointments 3+ hours away</p>
+                    <p><strong>Life Expectancy:</strong> 73 years in Robeson County vs. 81 years in Wake County - 8-year disparity</p>
+                    <p><strong>Social Determinants:</strong> 47% of children in poverty, high rates of social insecurity, limited access to specialty care</p>
+                    <div class="citation">Source: Robert Wood Johnson Foundation County Health Rankings; NC Health News; PMC Social Insecurity Study</div>
+                </div>
+            </div>
+            
+            <div class="section rural">
+                <h2 class="section-title">
+                    <span class="icon">🌾</span>
+                    Rural Classification
+                </h2>
+                <div class="section-content">
+                    <p><strong>HRSA Definition:</strong> Pembroke qualifies as rural under HRSA Rural-Urban Commuting Area (RUCA) codes due to low population density (1,229 people per square mile) and distance from major urban centers.</p>
+                    <p><strong>Rural Characteristics:</strong> Small town setting in Coastal Plain region, agricultural heritage, limited public transportation, and geographic isolation from specialized services.</p>
+                    <div class="citation">Source: HRSA Federal Office of Rural Health Policy; U.S. Census Bureau</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
